@@ -86,7 +86,8 @@ self.onmessage = async (event) => {
             payload.showPreviewSvg,
             timeLimitBigint,
             payload.seed,
-            payload.useEarlyTermination
+            payload.useEarlyTermination,
+            payload.nWorkers
           );
         }
       }

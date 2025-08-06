@@ -34,6 +34,7 @@ pub fn run_sparrow(
     time_limit: Option<u64>,
     seed: Option<u64>,
     use_early_termination: bool,
+    n_workers: usize,
 ) -> Result<(), JsValue> {
     log!(Level::Info, "Started LBF optimization");
 
@@ -70,6 +71,9 @@ pub fn run_sparrow(
 
     config.expl_cfg.time_limit = explore_dur;
     config.cmpr_cfg.time_limit = compress_dur;
+
+    config.expl_cfg.separator_config.n_workers = n_workers;
+    config.cmpr_cfg.separator_config.n_workers = n_workers;
 
     if use_early_termination {
         config.expl_cfg.max_conseq_failed_attempts = Some(DEFAULT_MAX_CONSEQ_FAILS_EXPL);

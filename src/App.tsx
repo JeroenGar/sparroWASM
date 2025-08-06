@@ -24,10 +24,11 @@ function App() {
   const [showLogsInstant, setShowLogsInstant] = useState(false);
   const [showPreviewSvg, setShowPreviewSvg] = useState(true);
   const [timeLimit, setTimeLimit] = useState(60);
-  const [seed, setSeed] = useState<bigint | undefined>(8780830896941405304n);
+  const [seed, setSeed] = useState<bigint | undefined>();
   const [useEarlyTermination, setUseEarlyTermination] = useState(false);
   const [changeInputFile, setChangeInputFile] = useState(false);
   const [optimizationAlgo, setOptimizationAlgo] = useState(OptimizationAlgo.SPARROW);
+  const [nWorkers, setNWorkers] = useState(2);
   const [loading, setLoading] = useState(false);
   const [compressingPhase, setCompressingPhase] = useState(false);
 
@@ -161,6 +162,7 @@ function App() {
             timeLimit: useEarlyTermination ? undefined : timeLimit,
             seed: seed,
             useEarlyTermination: useEarlyTermination,
+            nWorkers: nWorkers,
           },
         });
 
@@ -316,6 +318,15 @@ function App() {
 
   const handleChangeUseEarlyTermination = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setUseEarlyTermination(event.target.checked);
+  };
+
+  const handleChangeNWorkers = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value = parseInt(event.target.value, 10);
+    if (!isNaN(value) && value >= 1) {
+      setNWorkers(value);
+    } else {
+      setNWorkers(2);
+    }
   };
 
   const downloadSVG = (): void => {
@@ -550,6 +561,18 @@ function App() {
                       onChange={handleChangeSeed}
                       className={`${styles.numberInput} ${styles.seedInput}`}
                       data-testid="seedInput"
+                    />
+                  </label>
+
+                  <label className={styles.checkboxWrapper}>
+                    <span className={styles.numberLabel}>Number of workers</span>
+                    <input
+                      type="number"
+                      value={nWorkers}
+                      onChange={handleChangeNWorkers}
+                      min="1"
+                      className={styles.numberInput}
+                      data-testid="nWorkersInput"
                     />
                   </label>
                 </>
