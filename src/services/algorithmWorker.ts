@@ -3,10 +3,10 @@ import { FileType, Status, OptimizationAlgo } from "../Enums";
 import initWasm, * as wasm from "../wasm/wasm_jagua_rs";
 
 let wasmInitialized = false;
-const numThreads = navigator.hardwareConcurrency || 3;
 
 self.onmessage = async (event) => {
   const { type, payload } = event.data;
+  const numThreads = payload.nWorkers;
 
   if (!wasmInitialized) {
     try {
