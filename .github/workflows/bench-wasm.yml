@@ -1,0 +1,39 @@
+name: Playwright bench
+
+on:
+  workflow_dispatch:
+    inputs:
+      cpu_tag:
+        description: "CPU type for job"
+        required: true
+        type: choice
+        options:
+          - ubuntu-latest
+          - E5645
+
+jobs:
+  test:
+    runs-on: ${{ inputs.cpu_tag }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test speed-remote
+
+      - name: Commit and push benchmark results
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          create_branch: true
+          branch: "test-results"
+          commit_message: "chore: update benchmark results"
+          file_pattern: "results/benchmark_results_wasm.csv"

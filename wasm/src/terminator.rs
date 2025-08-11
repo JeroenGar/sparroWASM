@@ -41,19 +41,29 @@ impl WasmTerminator {
     }
 
     pub fn terminate(&self) {
-        TERMINATE_FLAG.store(true, Ordering::SeqCst);
+        TERMINATE_FLAG.store(true, Ordering::Relaxed);
     }
 }
 
 impl Terminator for WasmTerminator {
     fn kill(&self) -> bool {
+        // ! Needs some more testing if this improves the speed (non atomic read)
+        // let terminate = unsafe {
+        //     let ptr = &*TERMINATE_FLAG as *const AlignedAtomicBool as *const bool;
+        //     *ptr
+        // };
+
+        // self.timeout
+        //     .map_or(false, |timeout| Instant::now() > timeout)
+        //     || terminate
+
         self.timeout
             .map_or(false, |timeout| Instant::now() > timeout)
-            || TERMINATE_FLAG.load(Ordering::SeqCst)
+            || TERMINATE_FLAG.load(Ordering::Relaxed)
     }
 
     fn new_timeout(&mut self, timeout: Duration) {
-        TERMINATE_FLAG.store(false, Ordering::SeqCst);
+        TERMINATE_FLAG.store(false, Ordering::Relaxed);
         self.timeout = Some(Instant::now() + timeout);
     }
 

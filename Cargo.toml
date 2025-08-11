@@ -38,11 +38,18 @@ lbf = { path = "./jagua-rs/lbf" }
 svg_collision = { path = "./svg_collision_detector" }
 sparrow = {path = "./sparrow", features = ["only_final_svg", "simd"] }
 
+# jagua-rs = { git = "https://github.com/Waterboy1602/jagua-rs_wasm.git", rev = "86820711c22aa8dd2c18adef9298b88c771088d3", features = ["spp", "bpp"] }
+# svg_collision = { git = "https://github.com/Waterboy1602/svg_collision_detector.git"}
+# sparrow = { git = "https://github.com/Waterboy1602/sparrow_wasm.git", features = ["only_final_svg", "simd"]}
 
 [profile.release]
 opt-level = 3
 lto = "fat"
 codegen-units = 1
+
+[profile.dev]
+opt-level = 1
+debug = true
 
 [profile.test]
 opt-level = 3

@@ -27,3 +27,10 @@ dist-ssr
 /target
 **/*.rs.bk
 Cargo.lock
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/results/
