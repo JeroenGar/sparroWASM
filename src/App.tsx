@@ -335,7 +335,7 @@ function App() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = optimizationAlgo + "_nestasm.svg";
+      a.download = optimizationAlgo + "_sparrowasm.svg";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

@@ -75,6 +75,11 @@ pub fn run_sparrow(
     config.expl_cfg.separator_config.n_workers = n_workers;
     config.cmpr_cfg.separator_config.n_workers = n_workers;
 
+    config.expl_cfg.separator_config.iter_no_imprv_limit = 100;
+    config.expl_cfg.separator_config.strike_limit = 2;
+    config.cmpr_cfg.separator_config.iter_no_imprv_limit = 100;
+    config.cmpr_cfg.separator_config.strike_limit = 2;
+
     if use_early_termination {
         config.expl_cfg.max_conseq_failed_attempts = Some(DEFAULT_MAX_CONSEQ_FAILS_EXPL);
         config.cmpr_cfg.shrink_decay =

@@ -19,7 +19,7 @@ function Header({ onHomeClick }: HeaderProps) {
       </div>
 
       <div className={styles.container} onClick={onHomeClick}>
-        <h1>NESTASM</h1>
+        <h1>sparroWASM</h1>
       </div>
     </header>
   );
