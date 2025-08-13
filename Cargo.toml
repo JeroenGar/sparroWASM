@@ -32,7 +32,8 @@ document-features = "0.2"
 geo-types = "0.7"
 geo-buffer = "0.2"
 
-jagua-rs = { git = "https://github.com/JeroenGar/jagua-rs.git", rev="6216848810c02f48c45869e2a0b0178a0caa9f7a"  , features = ["spp", "bpp"] }
+
+jagua-rs = { path = "./jagua-rs/jagua-rs"  , features = ["spp", "bpp"] }
 lbf = { path = "./jagua-rs/lbf" }
 svg_collision = { path = "./svg_collision_detector" }
 sparrow = {path = "./sparrow", features = ["only_final_svg", "simd"] }
