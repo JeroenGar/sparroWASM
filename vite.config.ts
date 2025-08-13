@@ -5,7 +5,7 @@ import wasm from "vite-plugin-wasm";
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: "/sparrowasm",
+  base: "/sparroWASM",
   plugins: [
     react(),
     svgr({
