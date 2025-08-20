@@ -1,4 +1,4 @@
-use crate::enums::Status;
+use crate::status::Status;
 use js_sys::Array;
 use log::{Level, LevelFilter, log};
 use std::cell::RefCell;

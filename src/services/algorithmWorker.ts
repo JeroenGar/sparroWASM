@@ -1,6 +1,6 @@
-import { FileType, Status, OptimizationAlgo } from "../Enums";
+import {Status, OptimizationAlgo } from "../Enums";
 
-import initWasm, * as wasm from "../wasm/wasm_jagua_rs";
+import initWasm, * as wasm from "../../pkg/sparroWASM";
 
 let wasmInitialized = false;
 
@@ -71,12 +71,7 @@ self.onmessage = async (event) => {
     const input = payload.input;
 
     try {
-      if (payload.fileType === FileType.SVG) {
-        wasm.svg_collision_test(input);
-      } else if (payload.fileType === FileType.JSON) {
-        if (payload.optimizationAlgo === OptimizationAlgo.LBF) {
-          wasm.run_lbf(input);
-        } else if (payload.optimizationAlgo === OptimizationAlgo.SPARROW) {
+      if (payload.optimizationAlgo === OptimizationAlgo.SPARROW) {
           let timeLimitBigint: bigint | undefined;
           if (payload.timeLimit) {
             timeLimitBigint = BigInt(payload.timeLimit);
@@ -89,7 +84,6 @@ self.onmessage = async (event) => {
             payload.useEarlyTermination,
             payload.nWorkers
           );
-        }
       }
     } catch (e) {
       self.postMessage({ type: Status.ERROR, message: `Wasm computation failed: ` + e });

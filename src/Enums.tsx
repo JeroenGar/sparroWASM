@@ -15,6 +15,5 @@ export enum Status {
 }
 
 export enum OptimizationAlgo {
-  LBF = "lbf",
   SPARROW = "sparrow",
 }

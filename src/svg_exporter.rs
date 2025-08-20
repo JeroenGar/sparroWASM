@@ -1,4 +1,4 @@
-use crate::enums::Status;
+use crate::status::Status;
 
 use jagua_rs::io::svg::s_layout_to_svg;
 use jagua_rs::probs::spp::entities::{SPInstance, SPSolution};

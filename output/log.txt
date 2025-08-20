@@ -1,5 +1,0 @@
-[INFO] [00:00:00] <main> [EPOCH]: 2025-08-07T08:26:36.268876Z
-[WARN] [00:00:00] <main> [MAIN] no time limit specified
-[INFO] [00:00:00] <main> [MAIN] configured to explore for 480s and compress for 120s
-[WARN] [00:00:00] <main> [MAIN] no seed provided, using: 8457563496389931186
-[INFO] [00:00:00] <main> [MAIN] system time: 2025-08-07T08:26:36.269165Z

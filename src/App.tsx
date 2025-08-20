@@ -590,7 +590,6 @@ function App() {
                     value={optimizationAlgo}
                     onChange={(e) => setOptimizationAlgo(e.target.value as OptimizationAlgo)}
                   >
-                    <option value={OptimizationAlgo.LBF}>LBF</option>
                     <option value={OptimizationAlgo.SPARROW} defaultChecked>
                       SPARROW
                     </option>

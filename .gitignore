@@ -28,9 +28,5 @@ dist-ssr
 **/*.rs.bk
 Cargo.lock
 
-# Playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/results/
+# Wasm-pack
+/pkg
