@@ -1,4 +1,4 @@
-# sparroWASM
+# sparroWASM [![Deploy to GitHub Pages](https://github.com/JeroenGar/sparroWASM/actions/workflows/deploy.yml/badge.svg)](https://github.com/JeroenGar/sparroWASM/actions/workflows/deploy.yml)
 
 Run [`sparrow`](https://github.com/JeroenGar/sparrow) in any browser with WebAssembly:
 <br>

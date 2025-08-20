@@ -1,4 +1,4 @@
-name: Deploy Jagua-rs webpage with React and WASM to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   workflow_dispatch:
@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: recursive
@@ -20,18 +20,25 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Setup Rust Toolchain
+      - name: Setup Rust toolchain
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
           profile: minimal
           components: rust-src
 
-      - name: Build Rust WASM and React Application
+      - name: Install wasm-pack
+        uses: jetli/wasm-pack-action@v0.4.0
+        with:
+          version: 'latest'
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Build
         run: |
-          cargo install wasm-pack
-          cd wasm && wasm-pack build --target web --out-dir ../src/wasm
-          cd .. && npm install && npm run build
+          wasm-pack build --target web --release
+          npm run build
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
