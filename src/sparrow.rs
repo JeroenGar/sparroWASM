@@ -9,7 +9,7 @@ use jagua_rs::io::svg::s_layout_to_svg;
 use jagua_rs::probs::spp::io::ext_repr::ExtSPInstance;
 use log::{Level, info, log, warn};
 use rand::SeedableRng;
-use rand::prelude::SmallRng;
+use rand_xoshiro::Xoshiro256PlusPlus;
 use serde_wasm_bindgen::from_value;
 use sparrow::config::*;
 use sparrow::consts::{
@@ -90,12 +90,12 @@ pub fn run_sparrow(
     let rng = match seed {
         Some(seed) => {
             info!("[MAIN] using seed: {}", seed);
-            SmallRng::seed_from_u64(seed as u64)
+            Xoshiro256PlusPlus::seed_from_u64(seed as u64)
         }
         None => {
             let seed = rand::random();
             warn!("[MAIN] no seed provided, using: {}", seed);
-            SmallRng::seed_from_u64(seed)
+            Xoshiro256PlusPlus::seed_from_u64(seed)
         }
     };
 
