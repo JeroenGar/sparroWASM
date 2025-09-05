@@ -30,7 +30,7 @@ rand = { version = "0.9" }
 getrandom = { version = "0.3", features = ["wasm_js"] }
 
 jagua-rs = { git = "https://github.com/JeroenGar/jagua-rs.git", rev = "1fb0824457cea336e65cebdd8b3dfb8c9d88487a", features = ["spp", "bpp"] }
-sparrow = { git = "https://github.com/JeroenGar/sparrow.git", rev = "14247f7a257ebdc2fe40eee7d3c26665535f466c", features = ["only_final_svg", "simd"]}
+sparrow = { git = "https://github.com/JeroenGar/sparrow.git", rev = "754033d31e75644907b87366b9b35723d4f0aa8e", features = ["only_final_svg", "simd"]}
 #sparrow = {path = "../../sparrow", features = ["only_final_svg","simd"]}
 
 
