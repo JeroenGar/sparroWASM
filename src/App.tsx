@@ -65,7 +65,7 @@ function App() {
   const [seed, setSeed] = useState<bigint | undefined>();
   const [useEarlyTermination, setUseEarlyTermination] = useState(true);
   const [changeInputFile] = useState(false);
-  const [optimizationAlgo, setOptimizationAlgo] = useState(OptimizationAlgo.SPARROW);
+  const [optimizationAlgo] = useState(OptimizationAlgo.SPARROW);
   const [nWorkers, setNWorkers] = useState(4);
   const [loading, setLoading] = useState(false);
   const [compressingPhase, setCompressingPhase] = useState(false);
@@ -388,7 +388,7 @@ function App() {
       );
     }
 
-    return "Start optimization";
+    return "Optimize";
   };
 
   if (svgResult) {
@@ -609,25 +609,6 @@ function App() {
                       data-testid="nWorkersInput"
                     />
                   </label>
-                </>
-              )}
-
-              {!changeInputFile && (
-                <>
-                  <label className={styles.label} htmlFor="dropdown">
-                    Algorithm
-                  </label>
-
-                  <select
-                    id="optAlgoDropdown"
-                    className={styles.algoDropdown}
-                    value={optimizationAlgo}
-                    onChange={(e) => setOptimizationAlgo(e.target.value as OptimizationAlgo)}
-                  >
-                    <option value={OptimizationAlgo.SPARROW} defaultChecked>
-                      SPARROW
-                    </option>
-                  </select>
                 </>
               )}
 
