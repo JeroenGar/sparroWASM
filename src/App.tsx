@@ -22,7 +22,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   // list of available asset files in public/assets (kept in sync manually)
   const assetFiles = [
-    "Upload custom file",
+    "UPLOAD CUSTOM FILE",
     "albano.json",
     "blaz1.json",
     "dagli.json",
@@ -233,7 +233,7 @@ function App() {
     }
 
     // If user chose an asset (not 'Upload custom file'), load it from public/assets
-      if (selectedAsset && selectedAsset !== "Upload custom file") {
+      if (selectedAsset && selectedAsset !== "UPLOAD CUSTOM FILE") {
   const assetToLoad = selectedAsset;
       try {
         const response = await fetch(`${import.meta.env.BASE_URL}/assets/${assetToLoad}`);
@@ -492,7 +492,7 @@ function App() {
                 onChange={(e) => {
                   setSelectedAsset(e.target.value);
                   // if user selects an asset from list, disable demo flag
-                  if (e.target.value !== "Upload custom file") {
+                  if (e.target.value !== "UPLOAD CUSTOM FILE") {
                     // set file placeholder so UI shows the chosen asset name
                     setFile(new File([""], e.target.value, { type: "application/json" }));
                   } else {
@@ -508,8 +508,8 @@ function App() {
                 ))}
               </select>
 
-              {/* Show native file chooser only when the user picked 'Upload custom file' */}
-              {selectedAsset === "Upload custom file" && (
+              {/* Show native file chooser only when the user picked 'UPLOAD CUSTOM FILE' */}
+              {selectedAsset === "UPLOAD CUSTOM FILE" && (
                 <>
                   <input
                     type="file"
@@ -563,7 +563,7 @@ function App() {
                   </label>
 
                   <label className={styles.checkboxWrapper}>
-                    <span className={styles.numberLabel}>Early terminate optimization process</span>
+                    <span className={styles.numberLabel}>Auto terminate</span>
                     <input
                       type="checkbox"
                       checked={useEarlyTermination}
@@ -588,7 +588,12 @@ function App() {
                   )}
 
                   <label className={styles.checkboxWrapper}>
-                    <span className={styles.numberLabel}>RNG seed</span>
+                    <span className={styles.numberLabel}>RNG seed
+                      <br />
+                      <span style={{ fontSize: "0.8em", color: "#888" }}>
+                        Leave empty for random seed
+                      </span>
+                    </span>
                     <input
                       type="number"
                       value={seed?.toString() || ""}

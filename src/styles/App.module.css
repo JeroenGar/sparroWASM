@@ -147,7 +147,8 @@ div.container.solution > img {
 }
 
 .seedInput {
-  width: auto;
+  width: 80px;
+  max-width: 100%;
 }
 
 .numberLabel {
