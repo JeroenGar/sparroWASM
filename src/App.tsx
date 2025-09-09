@@ -20,15 +20,53 @@ function App() {
     new File([""], "swim.json", { type: "application/json" })
   );
   const [error, setError] = useState<string | null>(null);
-  const [useDemoFile, setUseDemoFile] = useState(true);
-  const [showLogsInstant, setShowLogsInstant] = useState(false);
+  // list of available asset files in public/assets (kept in sync manually)
+  const assetFiles = [
+    "Upload custom file",
+    "albano.json",
+    "blaz1.json",
+    "dagli.json",
+    "fu.json",
+    "gardeyn0.json",
+    "gardeyn0_c.json",
+    "gardeyn1.json",
+    "gardeyn1_c.json",
+    "gardeyn2.json",
+    "gardeyn2_c.json",
+    "gardeyn3.json",
+    "gardeyn3_c.json",
+    "gardeyn4.json",
+    "gardeyn4_c.json",
+    "gardeyn5.json",
+    "gardeyn5_c.json",
+    "gardeyn6.json",
+    "gardeyn6_c.json",
+    "gardeyn7.json",
+    "gardeyn7_c.json",
+    "gardeyn8.json",
+    "gardeyn8_c.json",
+    "gardeyn9.json",
+    "gardeyn9_c.json",
+    "jakobs1.json",
+    "jakobs2.json",
+    "mao.json",
+    "marques.json",
+    "shapes0.json",
+    "shapes1.json",
+    "shirts.json",
+    "swim.json",
+    "swim_c.json",
+    "trousers.json",
+  ];
+  const [selectedAsset, setSelectedAsset] = useState<string>("swim.json");
+  const [showLogsInstant, setShowLogsInstant] = useState(true);
   const [showPreviewSvg, setShowPreviewSvg] = useState(true);
-  const [timeLimit, setTimeLimit] = useState(60);
+  const [timeLimit, setTimeLimit] = useState(600);
   const [seed, setSeed] = useState<bigint | undefined>();
-  const [useEarlyTermination, setUseEarlyTermination] = useState(false);
-  const [changeInputFile, setChangeInputFile] = useState(false);
+  const [useEarlyTermination, setUseEarlyTermination] = useState(true);
+  const [changeInputFile] = useState(false);
   const [optimizationAlgo, setOptimizationAlgo] = useState(OptimizationAlgo.SPARROW);
-  const [nWorkers, setNWorkers] = useState(3);
+  const [nWorkers, setNWorkers] = useState(4);
   const [loading, setLoading] = useState(false);
   const [compressingPhase, setCompressingPhase] = useState(false);
 
@@ -194,9 +232,11 @@ function App() {
       return;
     }
 
-    if (useDemoFile) {
+    // If user chose an asset (not 'Upload custom file'), load it from public/assets
+      if (selectedAsset && selectedAsset !== "Upload custom file") {
+  const assetToLoad = selectedAsset;
       try {
-        const response = await fetch(`${import.meta.env.BASE_URL}/assets/swim.json`);
+        const response = await fetch(`${import.meta.env.BASE_URL}/assets/${assetToLoad}`);
 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
@@ -258,7 +298,6 @@ function App() {
     if (uploadedFile) {
       if (uploadedFile.type === "application/json") {
         setFile(uploadedFile);
-        setUseDemoFile(false);
         setError(null);
       } else {
         setError("Please upload a valid JSON file.");
@@ -270,22 +309,7 @@ function App() {
     }
   };
 
-  const handleUseDemoChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    if (event.target.checked) {
-      setUseDemoFile(true);
-      const file = new File([""], "swim.json", { type: "application/json" });
-      setFile(file);
-    } else {
-      setUseDemoFile(false);
-      if (file && file.name === "swim.json") {
-        setFile(null);
-      }
-    }
-  };
-
-  const handleChangeInputFile = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setChangeInputFile(event.target.checked);
-  };
+    // no demo checkbox; asset selection controls which asset is used
 
   const handleChangeShowLogsInstant = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setShowLogsInstant(event.target.checked);
@@ -457,46 +481,56 @@ function App() {
               }}
               className={styles.form}
             >
-              <label className={styles.label}>Upload an input file</label>
-              <label className={styles.subLabel}>JSON</label>
-              <input
-                type="file"
-                accept="application/json"
-                onChange={handleFileChange}
-                className={styles.inputFile}
-              />
-
-              <span className={styles.checkBoxLabel}>
-                <strong>Currently selected:</strong> {file ? file.name : ""}
-                <br />
-                <small>(To change, select a new file above)</small>
-              </span>
-
-              <label className={styles.checkboxWrapper}>
-                <span className={styles.checkboxLabel}>Use swim.json (demo file)</span>
-                <input
-                  type="checkbox"
-                  checked={useDemoFile}
-                  onChange={handleUseDemoChange}
-                  className={styles.checkbox}
-                />
+              <label className={styles.label} htmlFor="assetSelect">
+                Choose an instance to optimize
               </label>
 
-              <label className={styles.checkboxWrapper}>
-                <span className={styles.checkboxLabel}>Edit input file</span>
-                <input
-                  type="checkbox"
-                  checked={changeInputFile}
-                  onChange={handleChangeInputFile}
-                  className={styles.checkbox}
-                />
-              </label>
+              <select
+                id="assetSelect"
+                className={styles.algoDropdown}
+                value={selectedAsset}
+                onChange={(e) => {
+                  setSelectedAsset(e.target.value);
+                  // if user selects an asset from list, disable demo flag
+                  if (e.target.value !== "Upload custom file") {
+                    // set file placeholder so UI shows the chosen asset name
+                    setFile(new File([""], e.target.value, { type: "application/json" }));
+                  } else {
+                    // custom upload chosen
+                    setFile(null);
+                  }
+                }}
+              >
+                {assetFiles.map((name) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+
+              {/* Show native file chooser only when the user picked 'Upload custom file' */}
+              {selectedAsset === "Upload custom file" && (
+                <>
+                  <input
+                    type="file"
+                    accept="application/json"
+                    onChange={handleFileChange}
+                    className={styles.inputFile}
+                  />
+
+                  <span className={styles.checkBoxLabel}>
+                    <strong>Currently selected:</strong> {file ? file.name : ""}
+                    <br />
+                    <small>(To change, select a new file above)</small>
+                  </span>
+                </>
+              )}
 
               {optimizationAlgo === OptimizationAlgo.SPARROW && (
                 <>
                   <label className={styles.checkboxWrapper}>
                     <span className={styles.checkboxLabel}>
-                      Show logs instantly
+                      Live logs
                       <br />
                       <span style={{ fontSize: "0.8em", color: "#888" }}>
                         Causes some speed loss
@@ -513,10 +547,10 @@ function App() {
 
                   <label className={styles.checkboxWrapper}>
                     <span className={styles.checkboxLabel}>
-                      Show preview SVG
+                      Preview solution
                       <br />
                       <span style={{ fontSize: "0.8em", color: "#888" }}>
-                        Causes some speed loss
+                        Causes minor speed loss
                       </span>
                     </span>
                     <input
@@ -554,7 +588,7 @@ function App() {
                   )}
 
                   <label className={styles.checkboxWrapper}>
-                    <span className={styles.numberLabel}>Random seed</span>
+                    <span className={styles.numberLabel}>RNG seed</span>
                     <input
                       type="number"
                       value={seed?.toString() || ""}
