@@ -18,3 +18,6 @@ wasm-pack build --target web --release
 npm run build
 npm run preview -- --host
 ```
+
+> [!WARNING]
+> Please note that WebAssembly retains only about 50-60% of the speed compared to a native Rust build of `sparrow`
