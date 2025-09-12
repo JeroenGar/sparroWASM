@@ -375,7 +375,7 @@ function App() {
     if (compressingPhase) {
       return (
         <>
-          <span className={styles.loader} /> Cancel compressing
+          <span className={styles.loader} /> Cancel phase
         </>
       );
     }
@@ -383,7 +383,7 @@ function App() {
     if (loading) {
       return (
         <>
-          <span className={styles.loader} /> Cancel exploring
+          <span className={styles.loader} /> Cancel  phase
         </>
       );
     }

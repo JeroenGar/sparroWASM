@@ -21,3 +21,6 @@ npm run preview -- --host
 
 > [!WARNING]
 > Please note that WebAssembly retains only about 50-60% of the speed compared to a native Rust build of `sparrow`
+
+> [!WARNING]
+> Please note that WebAssembly retains only about 50-60% of the speed compared to a native Rust build of `sparrow`
