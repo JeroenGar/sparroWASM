@@ -216,7 +216,7 @@ div.container.solution > img {
   max-height: 300px;
   overflow-y: auto;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 12px;
+  font-size: clamp(8px, 2vw, 12px);
   line-height: 1.45;
 }
 
@@ -310,7 +310,7 @@ div.container.solution > img {
 }
 
 div.svgBox {
-  height: 75vh;
+  height: 66vh;
   width: auto;
   max-width: 100%;
   margin: 0 auto;
@@ -332,7 +332,7 @@ div.processing {
 
 @media (max-width: 600px) {
   div.svgBox {
-    height: 75vh;
+    height: 66vh;
     max-width: 100%;
   }
 
