@@ -282,7 +282,7 @@ div.container.solution > img {
 
 /* Add spacing between multiple processing buttons */
 .processing + .processing {
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 /* Button group container */
