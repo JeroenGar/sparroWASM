@@ -310,8 +310,19 @@ div.container.solution > img {
 }
 
 div.svgBox {
-  width: 50%;
+  height: 75vh;
+  width: auto;
+  max-width: 100%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div.svgBox svg {
+  height: 100%;
+  width: auto;
+  max-width: 100%;
 }
 
 div.processing {
@@ -321,7 +332,8 @@ div.processing {
 
 @media (max-width: 600px) {
   div.svgBox {
-    width: 90%;
+    height: 75vh;
+    max-width: 100%;
   }
 
   div.processing {
