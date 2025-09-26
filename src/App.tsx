@@ -188,9 +188,9 @@ function App() {
           const clientHeight = logBox.clientHeight;
           const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
           
-          // More generous tolerance - if within 200px of bottom, keep auto-scrolling
+          // More generous tolerance - if within 500px of bottom, keep auto-scrolling
           // This helps maintain connection during rapid updates
-          if (distanceFromBottom <= 200) {
+          if (distanceFromBottom <= 500) {
             //console.log('▶️ Auto-scrolling to bottom', { distanceFromBottom, scrollHeight, scrollTop, clientHeight });
             logBox.scrollTop = scrollHeight;
             
