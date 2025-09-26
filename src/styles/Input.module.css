@@ -1,6 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
 
 .items {
@@ -9,63 +10,87 @@
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
+  gap: 24px;
 }
 
 .title {
   text-align: center;
-  margin-top: 20px;
+  margin: 32px 0 16px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gh-color-fg-default);
 }
 
 .item {
-  padding: 10px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
+  padding: 24px;
+  border-radius: 12px;
+  background-color: var(--gh-color-canvas-default);
+  border: 1px solid var(--gh-color-border-default);
+  box-shadow: var(--gh-shadow-medium);
   box-sizing: border-box;
-
-  width: 20vw;
-  min-width: 310px;
-  margin: 30px;
+  width: 100%;
+  max-width: 400px;
+  min-width: 320px;
 }
 
 .input {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 16px;
   margin: 0;
 }
 
 .itemValue {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  margin: 5px 0 5px 0;
+  padding: 8px 0;
 }
 
 div.checkboxContainer {
   display: flex;
   align-items: center;
   cursor: pointer;
-  height: 40px;
+  height: 32px;
+  gap: 8px;
 }
 
 div.checkboxContainer > input {
   margin: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gh-color-accent-emphasis);
 }
 
 hr {
-  width: calc(100% - 20px);
-  margin: 10px 0;
+  width: 100%;
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--gh-color-border-default);
 }
 
 input.number {
-  width: 40px;
-  margin: 0 5px 0 5px;
+  width: 60px;
+  padding: 6px 8px;
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 6px;
+  background-color: var(--gh-color-canvas-default);
+  color: var(--gh-color-fg-default);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+input.number:focus {
+  outline: none;
+  border-color: var(--gh-color-accent-emphasis);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
 }
 
 input.number.strip {
-  width: 50px;
-  margin: 0 5px 0 5px;
+  width: 70px;
 }
 
 .degreeSymbolWrapper {
@@ -74,17 +99,17 @@ input.number.strip {
 }
 
 .degreeSymbolWrapper input {
-  padding-right: 5px; /* Add space for the degree symbol */
+  padding-right: 20px;
 }
 
 .degreeSymbolWrapper::after {
   content: "°";
   position: absolute;
-  right: 0px;
+  right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  pointer-events: none; /* Prevent interaction with the degree symbol */
-  padding-right: 10px;
+  pointer-events: none;
+  color: var(--gh-color-fg-muted);
 }
 
 .submit {
@@ -151,43 +176,53 @@ ul {
 }
 
 .label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gh-color-fg-default);
+  margin-bottom: 8px;
 }
 
 .subLabel {
-  font-size: 14px;
-  color: #333;
+  font-size: 12px;
+  color: var(--gh-color-fg-muted);
+  margin-bottom: 8px;
 }
 
 .button {
-  background-color: #007bff;
-  color: white;
-  border: none;
+  background-color: var(--gh-color-btn-primary-bg);
+  color: var(--gh-color-fg-on-emphasis);
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px 0;
-  margin: 20px 0 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
   width: 100%;
+  box-shadow: var(--gh-shadow-small);
 }
 
 .button:hover {
-  background-color: #0056b3;
+  background-color: var(--gh-color-btn-primary-hover-bg);
+  box-shadow: var(--gh-shadow-medium);
 }
 
 .algoDropdown {
   width: 100%;
-  padding: 8px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin: 10px 0;
-  background: #fff;
-  color: #333;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 6px;
+  background: var(--gh-color-canvas-default);
+  color: var(--gh-color-fg-default);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.algoDropdown:focus {
+  outline: none;
+  border-color: var(--gh-color-accent-emphasis);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
 }
 
 .loader {

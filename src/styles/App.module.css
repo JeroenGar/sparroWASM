@@ -1,9 +1,10 @@
 .home {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  height: calc(100vh - 70px);
+  min-height: calc(100vh - 80px);
+  padding: 32px 16px;
 }
 
 .forms {
@@ -11,70 +12,99 @@
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
+  gap: 24px;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .forms > div {
-  margin: 20px;
-  background: #fff;
+  background: var(--gh-color-canvas-default);
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  border-radius: 12px;
+  border: 1px solid var(--gh-color-border-default);
+  box-shadow: var(--gh-shadow-medium);
+  flex: 1;
+  max-width: 400px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 12px;
 }
 
 .label {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--gh-color-fg-default);
+  margin-bottom: 6px;
 }
 
 .subLabel {
   font-size: 14px;
-  color: #333;
+  color: var(--gh-color-fg-muted);
+  margin-bottom: 6px;
 }
 
 .textarea {
-  width: 95%;
+  width: 100%;
   height: 200px;
-  margin-top: 10px;
-  margin-right: 10px;
-  padding: 8px;
+  padding: 12px;
   font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 6px;
+  background-color: var(--gh-color-canvas-default);
+  color: var(--gh-color-fg-default);
+  resize: vertical;
+  transition: border-color 0.2s ease;
+  box-sizing: border-box;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--gh-color-accent-emphasis);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
 }
 
 .inputFile {
+  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
-  width: calc(100% - 16px);
-}
-
-.button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 8px 0;
-  margin: 20px 0 0 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
   width: 100%;
 }
 
+.button {
+  background-color: var(--gh-color-btn-primary-bg);
+  color: var(--gh-color-fg-on-emphasis);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 8px 16px;
+  transition: all 0.2s ease;
+  box-shadow: var(--gh-shadow-small);
+}
+
 .button:hover {
-  background-color: #0056b3;
+  background-color: var(--gh-color-btn-primary-hover-bg);
+  box-shadow: var(--gh-shadow-medium);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button:disabled {
+  background-color: var(--gh-color-btn-bg);
+  color: var(--gh-color-fg-muted);
+  cursor: not-allowed;
+  border-color: var(--gh-color-border-default);
 }
 
 div.container.solution {
@@ -82,24 +112,30 @@ div.container.solution {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-
+  margin-top: 32px;
   width: 90%;
-  height: 70%;
+  max-width: 1200px;
+  background: var(--gh-color-canvas-default);
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--gh-shadow-medium);
 }
 
 div.container.solution > img {
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 70vh;
   object-fit: contain;
+  border-radius: 8px;
 }
 
 .loader {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #555;
+  border: 2px solid var(--gh-color-border-default);
+  border-top: 2px solid var(--gh-color-accent-emphasis);
   border-radius: 50%;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   animation: spin 0.8s linear infinite;
   display: inline-block;
   vertical-align: middle;
@@ -118,64 +154,144 @@ div.container.solution > img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.5em;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  gap: 12px;
+  padding: 4px 0;
   width: 100%;
 }
 
 .checkbox {
-  width: 18px;
-  height: 18px;
-  accent-color: #007bff;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--gh-color-accent-emphasis);
   cursor: pointer;
 }
 
 .checkboxLabel {
-  font-size: 16px;
-  color: #333;
+  font-size: 14px;
+  color: var(--gh-color-fg-default);
   cursor: pointer;
   user-select: none;
   flex: 1;
   text-align: left;
+  font-weight: 400;
 }
 
 .numberInput {
-  width: 40px;
-  height: 18px;
-  accent-color: #007bff;
+  width: 60px;
+  height: 32px;
+  padding: 6px 8px;
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 6px;
+  background-color: var(--gh-color-canvas-default);
+  color: var(--gh-color-fg-default);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.numberInput:focus {
+  outline: none;
+  border-color: var(--gh-color-accent-emphasis);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
 }
 
 .seedInput {
-  width: 80px;
+  width: 100px;
   max-width: 100%;
 }
 
 .numberLabel {
-  font-size: 16px;
-  color: #333;
+  font-size: 14px;
+  color: var(--gh-color-fg-default);
+  font-weight: 500;
 }
 
 .logBox {
-  background: #f8f8f8;
-  border: 1px solid #ddd;
-
-  width: 70%;
-  margin-top: 1em;
-  margin-bottom: 2rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1em;
-  max-height: 200px;
+  background: var(--gh-color-canvas-inset);
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 6px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 16px;
+  max-height: 300px;
   overflow-y: auto;
-
-  font-family: monospace;
-  font-size: 0.95em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 .logBox ul {
   margin: 0;
-  padding-left: 1.2em;
+  padding-left: 16px;
+  color: var(--gh-color-fg-default);
+}
+
+.logBox li {
+  margin-bottom: 4px;
+}
+
+/* Select dropdown styling */
+.select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--gh-color-border-default);
+  border-radius: 6px;
+  background-color: var(--gh-color-canvas-default);
+  color: var(--gh-color-fg-default);
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: var(--gh-color-accent-emphasis);
+  box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
+}
+
+/* Error message styling */
+.error {
+  background-color: #fdf2f2;
+  color: var(--gh-color-danger-fg);
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+/* Success message styling */
+.success {
+  background-color: #f0f9f0;
+  color: var(--gh-color-success-fg);
+  border: 1px solid #86d993;
+  border-radius: 6px;
+  padding: 12px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+/* Processing buttons container */
+.processing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+}
+
+/* Add spacing between multiple processing buttons */
+.processing + .processing {
+  margin-top: 16px;
+}
+
+/* Button group container */
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
 }
 
 .logBox li {

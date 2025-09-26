@@ -7,12 +7,14 @@ interface HeaderProps {
 function Header({ onHomeClick }: HeaderProps) {
   return (
     <header className={styles.header}>
-        <h1 className={styles.container} onClick={onHomeClick}>
+      <div className={styles.container} onClick={onHomeClick}>
+        <div className={styles.logo}>
           sparroWASM
-        </h1>
-        <p className={styles.subtitle}>
-            Solve 2D nesting problems using <a href="https://github.com/JeroenGar/sparrow" target="_blank" rel="noopener noreferrer">sparrow</a> in the browser with WebAssembly!
-        </p>
+        </div>
+      </div>
+      <p className={styles.subtitle}>
+        Solve 2D nesting problems using <a href="https://github.com/JeroenGar/sparrow" target="_blank" rel="noopener noreferrer">sparrow</a> in the browser with WebAssembly!
+      </p>
     </header>
   );
 }

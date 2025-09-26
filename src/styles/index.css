@@ -1,13 +1,88 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+/* GitHub Primer Design System Variables */
+:root {
+  /* Light theme colors */
+  --gh-color-canvas-default: #ffffff;
+  --gh-color-canvas-overlay: #ffffff;
+  --gh-color-canvas-inset: #f6f8fa;
+  --gh-color-canvas-subtle: #f6f8fa;
+  
+  /* Text colors */
+  --gh-color-fg-default: #1f2328;
+  --gh-color-fg-muted: #656d76;
+  --gh-color-fg-subtle: #6e7781;
+  --gh-color-fg-on-emphasis: #ffffff;
+  
+  /* Border colors */
+  --gh-color-border-default: #d1d9e0;
+  --gh-color-border-muted: #d1d9e0b3;
+  
+  /* Brand colors */
+  --gh-color-accent-fg: #0969da;
+  --gh-color-accent-emphasis: #0969da;
+  --gh-color-success-fg: #1a7f37;
+  --gh-color-danger-fg: #d1242f;
+  
+  /* Button colors */
+  --gh-color-btn-bg: #f6f8fa;
+  --gh-color-btn-border: #d1d9e0;
+  --gh-color-btn-primary-bg: #1f883d;
+  --gh-color-btn-primary-hover-bg: #1a7f37;
+  
+  /* Header colors */
+  --gh-color-header-bg: #24292f;
+  --gh-color-header-text: #f0f6fc;
+  
+  /* Shadows */
+  --gh-shadow-small: 0 1px 0 rgba(31, 35, 40, 0.04);
+  --gh-shadow-medium: 0 3px 6px rgba(140, 149, 159, 0.15);
+}
 
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gh-color-canvas-default: #0d1117;
+    --gh-color-canvas-overlay: #161b22;
+    --gh-color-canvas-inset: #161b22;
+    --gh-color-canvas-subtle: #21262d;
+    
+    --gh-color-fg-default: #e6edf3;
+    --gh-color-fg-muted: #7d8590;
+    --gh-color-fg-subtle: #656d76;
+    
+    --gh-color-border-default: #30363d;
+    --gh-color-border-muted: #21262db3;
+    
+    --gh-color-btn-bg: #21262d;
+    --gh-color-btn-border: #30363d;
+  }
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: var(--gh-color-canvas-default);
+    color: var(--gh-color-fg-default);
     margin: 0;
     padding: 0;
-
     width: 100%;
+    line-height: 1.5;
+    font-size: 14px;
 }
 
 h1 {
-    color: #333;
+    color: var(--gh-color-fg-default);
+    font-weight: 600;
+}
+
+h2, h3, h4, h5, h6 {
+    color: var(--gh-color-fg-default);
+    font-weight: 600;
+}
+
+a {
+    color: var(--gh-color-accent-fg);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }

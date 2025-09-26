@@ -1,12 +1,11 @@
 .rust {
     display: flex;
     flex-direction: column;
-    justify-content: top;
+    justify-content: flex-start;
     align-items: center;
-
-    height: 20vh;
-    top: 0;
-    left: 0;
+    min-height: 20vh;
+    padding: 24px 16px;
+    background-color: var(--gh-color-canvas-default);
 }
 
 .changeStrip {
@@ -14,35 +13,49 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    gap: 16px;
+    min-height: 10vh;
     width: 100%;
-    margin-right: 30px;
+    padding: 16px;
+    background: var(--gh-color-canvas-default);
+    border: 1px solid var(--gh-color-border-default);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: var(--gh-shadow-medium);
 }
 
 .changeStrip > h1 {
-    margin-right: 10px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gh-color-fg-default);
 }
 
 .button {
-    background-color: #4caf50; /* Green */
-    border: none;
-    color: white;
+    background-color: var(--gh-color-btn-primary-bg);
+    border: 1px solid transparent;
+    color: var(--gh-color-fg-on-emphasis);
     text-align: center;
     text-decoration: none;
-    font-size: 48px;
-    margin: 4px 4px;
+    font-size: 20px;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
-    width: 50px;
-    height: 50px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: var(--gh-shadow-small);
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: var(--gh-color-btn-primary-hover-bg);
+    box-shadow: var(--gh-shadow-medium);
+}
+
+.button:active {
+    transform: translateY(1px);
 }
 
 .svg {

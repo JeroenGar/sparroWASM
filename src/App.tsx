@@ -406,11 +406,11 @@ function App() {
             >
               {!compressingPhase ? (
                 <>
-                  <span className={styles.loader} /> Cancel exploring
+                  <span className={styles.loader} /> Cancel phase
                 </>
               ) : (
                 <>
-                  <span className={styles.loader} /> Cancel compressing
+                  <span className={styles.loader} /> Cancel phase
                 </>
               )}
             </button>
