@@ -178,7 +178,35 @@ function App() {
 
   useEffect(() => {
     if (logBoxRef.current) {
-      logBoxRef.current.scrollTop = logBoxRef.current.scrollHeight;
+      const logBox = logBoxRef.current;
+      
+      // Use multiple RAF calls to ensure DOM is completely settled
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const scrollHeight = logBox.scrollHeight;
+          const scrollTop = logBox.scrollTop;
+          const clientHeight = logBox.clientHeight;
+          const distanceFromBottom = scrollHeight - scrollTop - clientHeight;
+          
+          // More generous tolerance - if within 200px of bottom, keep auto-scrolling
+          // This helps maintain connection during rapid updates
+          if (distanceFromBottom <= 200) {
+            //console.log('▶️ Auto-scrolling to bottom', { distanceFromBottom, scrollHeight, scrollTop, clientHeight });
+            logBox.scrollTop = scrollHeight;
+            
+            // Double-check after scroll to ensure it worked
+            setTimeout(() => {
+              const newDistanceFromBottom = logBox.scrollHeight - logBox.scrollTop - logBox.clientHeight;
+              if (newDistanceFromBottom > 5) {
+                //console.log('🔄 Re-scrolling to ensure bottom position', { newDistanceFromBottom });
+                logBox.scrollTop = logBox.scrollHeight;
+              }
+            }, 10);
+          } else {
+            //console.log('⏸️ Not scrolling - too far from bottom', { distanceFromBottom, scrollHeight, scrollTop, clientHeight });
+          }
+        });
+      });
     }
   }, [logs]);
 
