@@ -24,7 +24,7 @@
   border: 1px solid var(--gh-color-border-default);
   box-shadow: var(--gh-shadow-medium);
   flex: 1;
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .form {
