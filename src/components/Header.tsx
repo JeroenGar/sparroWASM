@@ -9,7 +9,7 @@ function Header({ onHomeClick }: HeaderProps) {
     <header className={styles.header}>
       <div className={styles.container} onClick={onHomeClick}>
         <div className={styles.logo}>
-          sparroWASM
+          🪶 sparroWASM
         </div>
       </div>
       <p className={styles.subtitle}>
