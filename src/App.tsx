@@ -66,7 +66,7 @@ function App() {
   const [useEarlyTermination, setUseEarlyTermination] = useState(true);
   const [changeInputFile] = useState(false);
   const [optimizationAlgo] = useState(OptimizationAlgo.SPARROW);
-  const [nWorkers, setNWorkers] = useState(4);
+  const [nWorkers, setNWorkers] = useState(2);
   const [loading, setLoading] = useState(false);
   const [compressingPhase, setCompressingPhase] = useState(false);
 
