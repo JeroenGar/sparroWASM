@@ -403,7 +403,7 @@ function App() {
     if (compressingPhase) {
       return (
         <>
-          <span className={styles.loader} /> Cancel phase
+          <span className={styles.loader} /> Terminate phase
         </>
       );
     }
@@ -434,11 +434,11 @@ function App() {
             >
               {!compressingPhase ? (
                 <>
-                  <span className={styles.loader} /> Cancel phase
+                  <span className={styles.loader} /> Terminate phase
                 </>
               ) : (
                 <>
-                  <span className={styles.loader} /> Cancel phase
+                  <span className={styles.loader} /> Terminate phase
                 </>
               )}
             </button>
