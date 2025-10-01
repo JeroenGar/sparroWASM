@@ -210,6 +210,12 @@ function App() {
     }
   }, [logs]);
 
+  const scrollToBottom = (): void => {
+    if (logBoxRef.current) {
+      logBoxRef.current.scrollTop = logBoxRef.current.scrollHeight;
+    }
+  };
+
   const startOptimization = (
     optimizationAlgo: OptimizationAlgo,
     input: string,
@@ -387,7 +393,7 @@ function App() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = optimizationAlgo + "_sparrowasm.svg";
+      a.download = "sparroWASM_solution.svg";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -460,13 +466,18 @@ function App() {
           </>
         )}
         {logs.length > 0 && (
-          <div className={styles.logBox} ref={logBoxRef} data-testid="logBox">
-            <h4>Logs</h4>
-            <ul>
-              {logs.map((log, idx) => (
-                <li key={idx}>{log}</li>
-              ))}
-            </ul>
+          <div className={styles.logBoxContainer}>
+            <button type="button" className={styles.scrollToBottomBtn} onClick={scrollToBottom}>
+              ↓ Scroll to bottom
+            </button>
+            <div className={styles.logBox} ref={logBoxRef} data-testid="logBox">
+              <h4>Logs</h4>
+              <ul>
+                {logs.map((log, idx) => (
+                  <li key={idx}>{log}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
       </>
@@ -479,13 +490,18 @@ function App() {
         <Header onHomeClick={resetState} />
         <ChangeInputFile fileContent={fileContent.current} startOptimization={startOptimization} />
         {logs.length > 0 && (
-          <div className={styles.logBox} ref={logBoxRef} data-testid="logBox">
-            <h4>Logs</h4>
-            <ul>
-              {logs.map((log, idx) => (
-                <li key={idx}>{log}</li>
-              ))}
-            </ul>
+          <div className={styles.logBoxContainer}>
+            <button type="button" className={styles.scrollToBottomBtn} onClick={scrollToBottom}>
+              ↓ Scroll to bottom
+            </button>
+            <div className={styles.logBox} ref={logBoxRef} data-testid="logBox">
+              <h4>Logs</h4>
+              <ul>
+                {logs.map((log, idx) => (
+                  <li key={idx}>{log}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
       </>
@@ -655,13 +671,18 @@ function App() {
         </div>
 
         {logs.length > 0 && (
-          <div className={styles.logBox} ref={logBoxRef} data-testid="logBox">
-            <h4>Logs</h4>
-            <ul>
-              {logs.map((log, idx) => (
-                <li key={idx}>{log}</li>
-              ))}
-            </ul>
+          <div className={styles.logBoxContainer}>
+            <button type="button" className={styles.scrollToBottomBtn} onClick={scrollToBottom}>
+              ↓ Scroll to bottom
+            </button>
+            <div className={styles.logBox} ref={logBoxRef} data-testid="logBox">
+              <h4>Logs</h4>
+              <ul>
+                {logs.map((log, idx) => (
+                  <li key={idx}>{log}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         )}
       </div>

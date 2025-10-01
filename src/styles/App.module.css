@@ -205,19 +205,46 @@ div.container.solution > img {
   font-weight: 500;
 }
 
+.logBoxContainer {
+  position: relative;
+  width: 90%;
+  max-width: 1200px;
+  margin: 24px auto;
+}
+
 .logBox {
   background: var(--gh-color-canvas-inset);
   border: 1px solid var(--gh-color-border-default);
   border-radius: 6px;
-  width: 90%;
-  max-width: 1200px;
-  margin: 24px auto;
   padding: 16px;
   max-height: 300px;
   overflow-y: auto;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: clamp(8px, 2vw, 12px);
   line-height: 1.45;
+}
+
+.scrollToBottomBtn {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  padding: 6px 10px;
+  background: var(--gh-color-btn-bg);
+  color: var(--gh-color-btn-text);
+  border: 1px solid var(--gh-color-btn-border);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  box-shadow: var(--gh-shadow-medium);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.scrollToBottomBtn:active {
+  background: var(--gh-color-btn-active-bg);
 }
 
 .logBox ul {
