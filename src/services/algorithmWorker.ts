@@ -10,6 +10,27 @@ self.onmessage = async (event) => {
 
   if (!wasmInitialized) {
     try {
+      // Check for cross-origin isolation before initializing WASM
+      if (typeof crossOriginIsolated === 'undefined' || !crossOriginIsolated) {
+        throw new Error(
+          "Cross-origin isolation not enabled. SharedArrayBuffer is not available. " +
+          "COOP/COEP headers may not be properly set by the service worker. " +
+          "This is common on Android - try refreshing the page."
+        );
+      }
+
+      if (typeof SharedArrayBuffer === 'undefined') {
+        throw new Error(
+          "SharedArrayBuffer is not available in this browser/context. " +
+          "Multithreading features will not work."
+        );
+      }
+
+      self.postMessage({
+        type: Status.PROCESSING,
+        message: `Cross-origin isolation verified. Initializing WASM...`,
+      });
+
       const wasmInstance = await initWasm();
       wasmInitialized = true;
 
