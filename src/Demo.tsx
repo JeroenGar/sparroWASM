@@ -315,9 +315,16 @@ function Demo() {
                 Download SVG
               </button>
             </div>
+
+            <div className={styles.processing}>
+              <button type="submit" className={styles.button} onClick={() => resetState()}>
+                Run Another Demo
+              </button>
+            </div>
+
             <div className={styles.processing}>
               <button type="submit" className={styles.button} onClick={() => goToHome()}>
-                Start over
+                Go to Main Page
               </button>
             </div>
           </>
