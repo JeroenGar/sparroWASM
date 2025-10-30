@@ -15,7 +15,7 @@ function Demo() {
   const logBoxRef = useRef<HTMLDivElement>(null);
   const hasStarted = useRef(false);
 
-  const [workerKey, setWorkerKey] = useState(0);
+  const [workerKey] = useState(0);
 
   // List of available asset files
   const assetFiles = [
@@ -54,26 +54,6 @@ function Demo() {
     "swim_c.json",
     "trousers.json",
   ];
-
-  const resetState = () => {
-    setSvgResult(null);
-    setLogs([]);
-    setLoading(false);
-    setCompressingPhase(false);
-
-    if (algorithmWorker) {
-      algorithmWorker.terminate();
-      algorithmWorker = null;
-    }
-
-    if (cancelWorker) {
-      cancelWorker.terminate();
-      cancelWorker = null;
-    }
-
-    setWorkerKey((prevKey) => prevKey + 1);
-    hasStarted.current = false;
-  };
 
   const getMaxEval = useCallback((logs: string[]): string | null => {
     const regex = /evals\/s:\s*(\d+\.?\d*)/;
@@ -317,14 +297,8 @@ function Demo() {
             </div>
 
             <div className={styles.processing}>
-              <button type="submit" className={styles.button} onClick={() => resetState()}>
-                Run Another Demo
-              </button>
-            </div>
-
-            <div className={styles.processing}>
               <button type="submit" className={styles.button} onClick={() => goToHome()}>
-                Go to Main Page
+                Start over
               </button>
             </div>
           </>
