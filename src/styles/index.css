@@ -38,6 +38,7 @@
 }
 
 /* Dark theme support */
+/* Disabled to prevent automatic dark mode
 @media (prefers-color-scheme: dark) {
   :root {
     --gh-color-canvas-default: #0d1117;
@@ -56,6 +57,7 @@
     --gh-color-btn-border: #30363d;
   }
 }
+*/
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
