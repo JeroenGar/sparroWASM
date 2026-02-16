@@ -24,13 +24,14 @@ fern = "0.7"
 web-time = "1.1"
 jiff = "0.2"
 wasm-bindgen-rayon = "1.3"
-once_cell = "1.21"
+once_cell = "1.21.3"
 
-rand = { version = "0.10" }
-getrandom = { version = "0.4", features = ["wasm_js"] }
+rand = { version = "0.9" }
+getrandom = { version = "0.3", features = ["wasm_js"] }
+rand_xoshiro = "0.7.0"
 
-sparrow = { git = "https://github.com/JeroenGar/sparrow.git", rev = "eed07866a8a490ef311007b4902e9b1ae2bde505", features = ["only_final_svg", "simd"]}
-jagua-rs = { git = "https://github.com/JeroenGar/jagua-rs.git", rev = "ba38bcae9ed3ab41a9e93a1894e2b01ea87c6619", features = ["spp"] }
+sparrow = { git = "https://github.com/JeroenGar/sparrow.git", rev = "04f54ff77fd9b614311879e8c62ee4e13294165e", features = ["only_final_svg", "simd"]}
+jagua-rs = { git = "https://github.com/JeroenGar/jagua-rs.git", rev = "877aaa3c3217f0dd2b6f1c8af8d3e53d4023e422", features = ["spp"] }
 
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
@@ -55,7 +56,7 @@ overflow-checks = true
 debug = true
 
 [dev-dependencies]
-wasm-bindgen-test = "0.3"
+wasm-bindgen-test = "0.3.34"
 
 [package.metadata.wasm-pack.profile.profiling]
 wasm-opt = ['-O4', '-g']

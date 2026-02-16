@@ -8,6 +8,8 @@ use jagua_rs::io::import::Importer;
 use jagua_rs::io::svg::s_layout_to_svg;
 use jagua_rs::probs::spp::io::ext_repr::ExtSPInstance;
 use log::{Level, info, log, warn};
+use rand::SeedableRng;
+use rand_xoshiro::Xoshiro256PlusPlus;
 use serde_wasm_bindgen::from_value;
 use sparrow::config::*;
 use sparrow::consts::{
@@ -17,8 +19,6 @@ use sparrow::consts::{
 use sparrow::optimizer::optimize;
 use sparrow::util::listener::DummySolListener;
 use std::time::Duration;
-use rand::rngs::Xoshiro256PlusPlus;
-use rand::SeedableRng;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -90,7 +90,7 @@ pub fn run_sparrow(
     let rng = match seed {
         Some(seed) => {
             info!("[MAIN] using seed: {}", seed);
-            Xoshiro256PlusPlus::seed_from_u64(seed)
+            Xoshiro256PlusPlus::seed_from_u64(seed as u64)
         }
         None => {
             let seed = rand::random();
@@ -109,7 +109,7 @@ pub fn run_sparrow(
         config.min_item_separation,
         config.narrow_concavity_cutoff_ratio
     );
-    let instance = jagua_rs::probs::spp::io::import_instance(&importer, &ext_sp_instance).unwrap();
+    let instance = jagua_rs::probs::spp::io::import(&importer, &ext_sp_instance).unwrap();
 
     info!(
         "[MAIN] loaded instance {} with #{} items",
@@ -128,7 +128,6 @@ pub fn run_sparrow(
             &mut wasm_terminator,
             &config.expl_cfg,
             &config.cmpr_cfg,
-            None
         );
     } else {
         sol = optimize(
@@ -138,7 +137,6 @@ pub fn run_sparrow(
             &mut wasm_terminator,
             &config.expl_cfg,
             &config.cmpr_cfg,
-            None
         );
     }
 
