@@ -4,8 +4,6 @@ Run [`sparrow`](https://github.com/JeroenGar/sparrow) in any browser with WebAss
 <br>
 [**https://jeroengar.github.io/sparroWASM**](https://jeroengar.github.io/sparroWASM)
 
-[UNDER DEVELOPMENT]
-
 ## Prerequisites
 - Rust
 - Node.js
@@ -18,9 +16,6 @@ wasm-pack build --target web --release
 npm run build
 npm run preview -- --host
 ```
-
-> [!WARNING]
-> Please note that WebAssembly retains only about 50-60% of the speed compared to a native Rust build of `sparrow`
 
 > [!WARNING]
 > Please note that WebAssembly retains only about 50-60% of the speed compared to a native Rust build of `sparrow`
